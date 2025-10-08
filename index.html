@@ -71,7 +71,7 @@
 
     <h2>Select Language / 言語を選択</h2>
 
-    <details open>
+    <details id="lang-en" open>
         <summary>🇬🇧 English</summary>
         <div class="lang-content">
             <div class="contact">
@@ -129,7 +129,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-ja">
         <summary>🇯🇵 日本語</summary>
         <div class="lang-content">
             <div class="contact">
@@ -180,7 +180,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-ru">
         <summary>🇷🇺 Русский</summary>
         <div class="lang-content">
             <div class="contact">
@@ -231,7 +231,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-zh-hans">
         <summary>🇨🇳 简体中文</summary>
         <div class="lang-content">
             <div class="contact">
@@ -282,7 +282,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-zh-hant">
         <summary>🇹🇼 繁體中文</summary>
         <div class="lang-content">
             <div class="contact">
@@ -333,7 +333,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-pt-br">
         <summary>🇧🇷 Português (BR)</summary>
         <div class="lang-content">
             <div class="contact">
@@ -384,7 +384,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-es-mx">
         <summary>🇲🇽 Español (MX)</summary>
         <div class="lang-content">
             <div class="contact">
@@ -435,7 +435,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-ko">
         <summary>🇰🇷 한국어</summary>
         <div class="lang-content">
             <div class="contact">
@@ -486,7 +486,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-th">
         <summary>🇹🇭 ไทย</summary>
         <div class="lang-content">
             <div class="contact">
@@ -537,7 +537,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-vi">
         <summary>🇻🇳 Tiếng Việt</summary>
         <div class="lang-content">
             <div class="contact">
@@ -588,7 +588,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-id">
         <summary>🇮🇩 Bahasa Indonesia</summary>
         <div class="lang-content">
             <div class="contact">
@@ -639,7 +639,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-ar">
         <summary>🇸🇦 العربية</summary>
         <div class="lang-content">
             <div class="contact">
@@ -690,7 +690,7 @@
         </div>
     </details>
 
-    <details>
+    <details id="lang-fr">
         <summary>🇫🇷 Français (FR)</summary>
         <div class="lang-content">
             <div class="contact">
@@ -741,5 +741,49 @@
         </div>
     </details>
 
+    <script>
+        // Language hash mapping
+        const langMap = {
+            'en': 'lang-en',
+            'ja': 'lang-ja',
+            'ru': 'lang-ru',
+            'zh-hans': 'lang-zh-hans',
+            'zh-hant': 'lang-zh-hant',
+            'pt-br': 'lang-pt-br',
+            'es-mx': 'lang-es-mx',
+            'ko': 'lang-ko',
+            'th': 'lang-th',
+            'vi': 'lang-vi',
+            'id': 'lang-id',
+            'ar': 'lang-ar',
+            'fr': 'lang-fr'
+        };
+
+        // Open language tab based on hash
+        function openLanguageFromHash() {
+            const hash = window.location.hash.substring(1); // Remove #
+            const langId = langMap[hash];
+
+            if (langId) {
+                // Close all details
+                document.querySelectorAll('details').forEach(detail => {
+                    detail.open = false;
+                });
+
+                // Open the selected language
+                const selectedLang = document.getElementById(langId);
+                if (selectedLang) {
+                    selectedLang.open = true;
+                    selectedLang.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        }
+
+        // Run on page load
+        openLanguageFromHash();
+
+        // Listen for hash changes
+        window.addEventListener('hashchange', openLanguageFromHash);
+    </script>
 </body>
 </html>
